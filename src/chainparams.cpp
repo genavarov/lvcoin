@@ -107,6 +107,7 @@ public:
         nDefaultPort = 8644;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         nSubsidyHalvingInterval = 210000;
+		nProofOfWorkZero = 210000 * 60 * 10;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
@@ -131,12 +132,12 @@ public:
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 126000000 * COIN;
+        txNew.vout[0].nValue = nProofOfWorkZero * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04a15fddd04020b22f44bb5688d5104532d93b5503ee7bcb998a334390ef584c1199267f67d324b2c6b843ab350260bde25671952299af57d084085cd2a73dfe0d") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
-        genesis.nVersion = 1;
+        genesis.nVersion = 4;
         genesis.nTime    = 1486404000;
         genesis.nBits    = 0x1e0ffff0;
         genesis.nNonce   = 995063;
@@ -289,6 +290,7 @@ public:
         nTargetSpacing = 2.5 * 60; // 2.5 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nMaxTipAge = 24 * 60 * 60;
+        genesis.nVersion = 1;
         genesis.nTime = 1486339200;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 0;
