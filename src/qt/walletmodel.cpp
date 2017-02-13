@@ -310,7 +310,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
 
         CReserveKey *keyChange = transaction.getPossibleKeyChange();
         if(!wallet->CommitTransaction(*newTx, *keyChange))
-            return TransactionCommitFailed;
+            //return TransactionCommitFailed;
 
         CTransaction* t = (CTransaction*)newTx;
         CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);

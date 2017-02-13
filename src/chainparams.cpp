@@ -135,7 +135,7 @@ public:
         txNew.vout[0].nValue = nProofOfWorkZero * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04a15fddd04020b22f44bb5688d5104532d93b5503ee7bcb998a334390ef584c1199267f67d324b2c6b843ab350260bde25671952299af57d084085cd2a73dfe0d") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
-        genesis.hashPrevBlock = -1;
+        genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         //genesis.nVersion = 1;
         genesis.nVersion = 1;
