@@ -20,12 +20,20 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 		//int64_t nParamsInterval = Params().Interval();
 		return GetNextWorkRequiredn(pindexLast, pblock);
     }
-    else
-    { //New non Standard retargeting x
+    else{
+	if (pindexLast->nHeight+1 < 200) // Lavrovcoin: block < 1200000
+    { //New non Standard retargeting eX
 		//int64_t nParamsTargetTimespan = Params().TargetTimespanx();
 		//int64_t nParamsInterval = Params().Intervalx();
 		return GetNextWorkRequiredx(pindexLast, pblock);
     }
+    else
+    { //New non Standard retargeting eXs
+        //int64_t nParamsTargetTimespan = Params().TargetTimespans();
+		//int64_t nParamsInterval = Params().Intervals();
+		return GetNextWorkRequireds(pindexLast, pblock);
+    }
+	}
 
 }
 	
@@ -175,6 +183,82 @@ unsigned int GetNextWorkRequiredx(const CBlockIndex* pindexLast, const CBlockHea
     /// debug print
     LogPrintf("GetNextWorkRequired eX RETARGET\n");
     LogPrintf("Params().TargetTimespanx() = %d    nActualTimespan = %d\n", Params().TargetTimespanx(), nActualTimespan);
+    LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
+    LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
+
+    return bnNew.GetCompact();
+}
+
+unsigned int GetNextWorkRequireds(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
+{
+    unsigned int nProofOfWorkLimit = Params().ProofOfWorkLimit().GetCompact();
+
+    // Genesis block
+    if (pindexLast == NULL)
+        return nProofOfWorkLimit;
+	
+	// Only change once per interval
+    if ((pindexLast->nHeight+1) % Params().Intervals() != 0)
+    {
+        if (Params().AllowMinDifficultyBlocks())
+        {
+            // Special difficulty rule for testnet:
+            // If the new block's timestamp is more than 2* 10 minutes
+            // then allow mining of a min-difficulty block.
+            if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + Params().TargetSpacing()*2)
+                return nProofOfWorkLimit;
+            else
+            {
+                // Return the last non-special-min-difficulty-rules-block
+                const CBlockIndex* pindex = pindexLast;
+                while (pindex->pprev && pindex->nHeight % Params().Intervals() != 0 && pindex->nBits == nProofOfWorkLimit)
+                    pindex = pindex->pprev;
+                return pindex->nBits;
+            }
+        }
+        return pindexLast->nBits;
+    }
+
+    // Lavrovcoin: This fixes an issue where a 51% attack can change difficulty at will.
+    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
+    int blockstogoback = Params().Intervals()-1;
+    if ((pindexLast->nHeight+1) != Params().Intervals())
+        blockstogoback = Params().Intervals();
+
+    // Go back by what we want to be 14 days worth of blocks
+    const CBlockIndex* pindexFirst = pindexLast;
+    for (int i = 0; pindexFirst && i < blockstogoback; i++)
+        pindexFirst = pindexFirst->pprev;
+    assert(pindexFirst);
+
+    // Limit adjustment step
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+    LogPrintf("  nActualTimespan = %d  before bounds\n", nActualTimespan);
+    if (nActualTimespan < Params().TargetTimespans()/4)
+        nActualTimespan = Params().TargetTimespans()/4;
+    if (nActualTimespan > Params().TargetTimespans()*4)
+        nActualTimespan = Params().TargetTimespans()*4;
+
+    // Retarget
+    uint256 bnNew;
+    uint256 bnOld;
+    bnNew.SetCompact(pindexLast->nBits);
+    bnOld = bnNew;
+    // Lavrovcoin: intermediate uint256 can overflow by 1 bit
+    bool fShift = bnNew.bits() > 235;
+    if (fShift)
+        bnNew >>= 1;
+    bnNew *= nActualTimespan;
+    bnNew /= Params().TargetTimespans();
+    if (fShift)
+        bnNew <<= 1;
+
+    if (bnNew > Params().ProofOfWorkLimit())
+        bnNew = Params().ProofOfWorkLimit();
+
+    /// debug print
+    LogPrintf("GetNextWorkRequired eXs RETARGET\n");
+    LogPrintf("Params().TargetTimespans() = %d    nActualTimespan = %d\n", Params().TargetTimespans(), nActualTimespan);
     LogPrintf("Before: %08x  %s\n", pindexLast->nBits, bnOld.ToString());
     LogPrintf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.ToString());
 

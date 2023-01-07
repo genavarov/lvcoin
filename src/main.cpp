@@ -1246,14 +1246,18 @@ CAmount GetProofOfWorkReward(unsigned int nHeight)
 {
         CAmount nSubsidy = 10 * COIN;
 
-		if (nHeight < 101)
-			nSubsidy = 20000 * COIN; // 2,0000000 coins
+		if (nHeight < 26)
+			nSubsidy = 21000000 * COIN; // 525,000000 coins
+		else if (nHeight < 51)
+			nSubsidy = 1000000 * COIN; // 25,000000 coins
+		else if (nHeight < 101)
+			nSubsidy = 10000 * COIN; // 0,500000 coins
 		else if (nHeight < 201)
-			nSubsidy = 100 * COIN; // 10000 coins
+			nSubsidy = 1000 * COIN; // 100000 coins
 		else if (nHeight < 401)
-			nSubsidy = 40 * COIN; // 8000 coins
+			nSubsidy = 100 * COIN; // 20000 coins
 		else if (nHeight < 601)
-			nSubsidy = 20 * COIN; // 8000 coins
+			nSubsidy = 10 * COIN; // 2000 coins
 		else if (nHeight < 1001)
 			nSubsidy = 10 * COIN; // 4000 coins
 		else if (nHeight < 2001)
@@ -1268,8 +1272,22 @@ CAmount GetProofOfWorkReward(unsigned int nHeight)
 			nSubsidy = 10 * COIN; // 100000 coins
 		else if (nHeight < 40001)
 			nSubsidy = 10 * COIN; // 200000 coins
-		else if (nHeight > 80000)
-			nSubsidy = 10 * COIN; // 10 coins per block
+		else if (nHeight < 60001)
+			nSubsidy = 10 * COIN; // 200000 coins
+		else if (nHeight < 80001)
+			nSubsidy = 10 * COIN; // 200000 coins
+		else if (nHeight < 105001)
+			nSubsidy = 10 * COIN; // 250000 coins
+		else if (nHeight < 210001)
+			nSubsidy = 10 * COIN; // 1050000 coins
+		else if (nHeight < 420001)
+			nSubsidy = 10 * COIN; // 1050000 (5) coins
+		else if (nHeight < 630001)
+			nSubsidy = 10 * COIN; // 525000 (2.5) coins
+		else if (nHeight < 840001)
+			nSubsidy = 10 * COIN; // 262500 (1.25) coins
+		else if (nHeight > 840000)
+			nSubsidy = 10 * COIN; // (0.625) coins per block
 
     	return nSubsidy;
 }
@@ -2660,7 +2678,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 	unsigned int nHeightMaxNextBl = ((block.GetBlockTime() - Params().GenesisBlock().GetBlockTime() + Params().TargetSpacing())/Params().TargetSpacing());
 	if (nHeight > nHeightMaxNextBl) {
     // Mark block as in flight already
-    //LogPrintf("Error in LamacoinMiner : Invalid over hight limit next block, unable to create new block!\n");
+    //LogPrintf("Error in LavrovcoinMiner : Invalid over hight limit next block, unable to create new block!\n");
 	return state.DoS(100, error("%s : forked chain newest than over hight limit (height %d)", __func__, nHeight));
 	//return;
     }	
