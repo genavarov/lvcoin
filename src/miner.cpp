@@ -491,19 +491,22 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
-						MilliSleep(105000);
+						MilliSleep(145000);
 				    }
 					else
 					{   
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
-							MilliSleep(105000);
+							MilliSleep(145000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							MilliSleep(100000);
 						}
 						
@@ -517,19 +520,22 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
-						MilliSleep(105000);
+						MilliSleep(145000);
 				    }
 					else
 					{   
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
-							MilliSleep(105000);
+							MilliSleep(145000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							MilliSleep(100000);
 						}
 						
@@ -543,19 +549,22 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
-						MilliSleep(120000);
+						MilliSleep(150000);
 				    }
 					else
 					{   
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
-							MilliSleep(120000);
+							MilliSleep(150000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 					        MilliSleep(110000);
 						}
 						
@@ -569,19 +578,22 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
-						MilliSleep(130000);
+						MilliSleep(155000);
 				    }
 					else
 					{   
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
-							MilliSleep(130000);
+							MilliSleep(155000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 					        MilliSleep(120000);
 						}
 						
@@ -595,24 +607,26 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
-						MilliSleep(140000);
+						MilliSleep(160000);
 				    }
 					else
 					{   
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
-							MilliSleep(140000);
+							MilliSleep(160000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 					        MilliSleep(130000);
 						}
 						
 					}//End Check amount
-				//LogPrintf("Timeout in LavrovcoinMiner : Now time: %s over hight limit active block (%s), unable to create new block ! wait 2:20 min...\n", GetAdjustedTime(), chainActive.Height());
 				//return;
 				//MilliSleep(140000);
 				}
@@ -622,19 +636,22 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
-						MilliSleep(145000);
+						MilliSleep(165000);
 				    }
 					else
 					{   
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
-							MilliSleep(145000);
+							MilliSleep(165000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 					        MilliSleep(135000);
 						}
 						
@@ -649,6 +666,7 @@ void static BitcoinMiner(CWallet *pwallet)
 					CAmount nValue = pwallet->GetBalance();
                     if (nValue <= 0)
 					{
+						LogPrintf("Warn in LavrovcoinMiner : Invalid zero amount on balance - unable for fast mining!\n");						
 						//return;
 						MilliSleep(155000);
 				    }
@@ -657,11 +675,13 @@ void static BitcoinMiner(CWallet *pwallet)
 						CAmount nSubsidyMin = GetProofOfWorkRewardBalance(chainActive.Height()+1); // Allowed balance or not ?
 						if (nValue <= nSubsidyMin)
 						{
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance: %s It is not alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 							//return;
 							MilliSleep(155000);
 						}
 						else
 						{	
+							LogPrintf("LavrovcoinMiner : Alowed balance: %s Your balance > : %s It is alowed fast mining!\n", FormatMoney(nSubsidyMin), FormatMoney(nValue));
 					        MilliSleep(145000);
 						}
 						

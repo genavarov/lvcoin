@@ -534,7 +534,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(120000);
+						MilliSleep(160000);
 				    }
 					else
 					{   
@@ -542,7 +542,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(120000);
+							MilliSleep(160000);
 						}
 						else
 						{	
@@ -561,7 +561,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(125000);
+						MilliSleep(155000);
 				    }
 					else
 					{   
@@ -569,7 +569,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(125000);
+							MilliSleep(155000);
 						}
 						else
 						{	
@@ -588,7 +588,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(135000);
+						MilliSleep(165000);
 				    }
 					else
 					{   
@@ -596,7 +596,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(135000);
+							MilliSleep(165000);
 						}
 						else
 						{	
@@ -615,7 +615,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(145000);
+						MilliSleep(165000);
 				    }
 					else
 					{   
@@ -623,7 +623,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(145000);
+							MilliSleep(165000);
 						}
 						else
 						{	
@@ -642,7 +642,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(150000);
+						MilliSleep(180000);
 				    }
 					else
 					{   
@@ -650,7 +650,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(150000);
+							MilliSleep(180000);
 						}
 						else
 						{	
@@ -669,7 +669,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(153000);
+						MilliSleep(183000);
 				    }
 					else
 					{   
@@ -677,7 +677,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(153000);
+							MilliSleep(183000);
 						}
 						else
 						{	
@@ -697,7 +697,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
                     if (nValue <= 0)
 					{
 						//return;
-						MilliSleep(155000);
+						MilliSleep(185000);
 				    }
 					else
 					{   
@@ -705,11 +705,12 @@ Value getblocktemplate(const Array& params, bool fHelp)
 						if (nValue <= nSubsidyMin)
 						{
 							//return;
-							MilliSleep(155000);
+							MilliSleep(185000);
 						}
 						else
 						{	
-					        MilliSleep(150000);
+					        //return;
+							MilliSleep(150000);
 						}
 						
 					}//End Check amount
@@ -718,11 +719,12 @@ Value getblocktemplate(const Array& params, bool fHelp)
 				}
 		//return;
 		//MilliSleep(150000);
-		MilliSleep(45000); //again min timeout 150000 - 110000 = 40000 
+		MilliSleep(148000); //again min timeout 150000 - 110000 = 40000 
 		}
 			//chainActive.Height()+1
 		if (chainActive.Tip()->GetBlockTime() + Params().TargetSpacing() + Params().TargetSpacing() > GetAdjustedTime()) { //not time for generate
-        //return;
+        //throw JSONRPCError(RPC_INVALID_PARAMETER, "Timeout: Invalid over hight limit active block, unable to create new block! wait 5 min...");
+		//return;
 		MilliSleep(150000);
 		}
 		//chainActive.Height()+1 + 150 sec
