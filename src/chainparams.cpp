@@ -103,7 +103,7 @@ public:
         vAlertPubKey = ParseHex("043014c67b78f95c8964ba4f10bc83ce6dbee8d6afeb0570552e2f7562f83a5ae6cc937900545ab5c30a84565315d55107d5269e816c50e4080ca89dc2cc64e9c2");
         nDefaultPort = 8544;
         //bnProofOfWorkLimit = ~uint256(0) >> 20;
-		bnProofOfWorkLimit = uint256(00007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
+		bnProofOfWorkLimit = uint256(0000efffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
         nSubsidyHalvingInterval = 210000;
         nProofOfWorkZero = 50; 
         nEnforceBlockUpgradeMajority = 750;
@@ -139,7 +139,7 @@ public:
         genesis.nVersion = 1;
         genesis.nTime    = 1673049600;
         genesis.nBits    = 0x1e7fffff;
-        genesis.nNonce   = 8;
+        genesis.nNonce   = 77808;
 
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0x9f1a0404a4cb7f5f10d19fcdcc2689176e004787c4eb0449175b2035c12e15e4"));
@@ -177,7 +177,7 @@ public:
 
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
-        fAllowMinDifficultyBlocks = false;
+        fAllowMinDifficultyBlocks = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -216,7 +216,7 @@ public:
         vAlertPubKey = ParseHex("043014c67b78f95c8964ba4f10bc83ce6dbee8d6afeb0570552e2f7562f83a5ae6cc937900545ab5c30a84565315d55107d5269e816c50e4080ca89dc2cc64e9c2");
         nDefaultPort = 9333;
         //bnProofOfWorkLimit = ~uint256(0) >> 20;
-		bnProofOfWorkLimit = uint256(00007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
+		bnProofOfWorkLimit = uint256(0000efffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
         nSubsidyHalvingInterval = 210000; //empty
         nEnforceBlockUpgradeMajority = 750; //51
         nRejectBlockOutdatedMajority = 950; //75
@@ -231,7 +231,7 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1673049600;
-        genesis.nNonce = 8;
+        genesis.nNonce = 77808;
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0x9f1a0404a4cb7f5f10d19fcdcc2689176e004787c4eb0449175b2035c12e15e4"));
 
@@ -276,7 +276,7 @@ public:
 
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
-        fAllowMinDifficultyBlocks = false; //true
+        fAllowMinDifficultyBlocks = true; //true
         fDefaultConsistencyChecks = false;
         fRequireStandard = true; //false
         fMineBlocksOnDemand = false;
