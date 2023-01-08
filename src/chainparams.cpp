@@ -54,7 +54,7 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        ( 0, uint256("0xd8bbb671f793975bba784b46fd5de8f007aceba352c062787c3595ab89cda624"))
+        ( 0, uint256("0x9f1a0404a4cb7f5f10d19fcdcc2689176e004787c4eb0449175b2035c12e15e4"))
         ;
 static const Checkpoints::CCheckpointData data = {
         &mapCheckpoints,
@@ -66,7 +66,7 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
-        ( 0, uint256("0xd8bbb671f793975bba784b46fd5de8f007aceba352c062787c3595ab89cda624"))
+        ( 0, uint256("0x9f1a0404a4cb7f5f10d19fcdcc2689176e004787c4eb0449175b2035c12e15e4"))
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
         &mapCheckpointsTestnet,
@@ -102,7 +102,8 @@ public:
         pchMessageStart[3] = 0xdb;
         vAlertPubKey = ParseHex("043014c67b78f95c8964ba4f10bc83ce6dbee8d6afeb0570552e2f7562f83a5ae6cc937900545ab5c30a84565315d55107d5269e816c50e4080ca89dc2cc64e9c2");
         nDefaultPort = 8544;
-        bnProofOfWorkLimit = ~uint256(0) >> 2;
+        //bnProofOfWorkLimit = ~uint256(0) >> 20;
+		bnProofOfWorkLimit = uint256(00007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
         nSubsidyHalvingInterval = 210000;
         nProofOfWorkZero = 50; 
         nEnforceBlockUpgradeMajority = 750;
@@ -137,11 +138,11 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         genesis.nTime    = 1673049600;
-        genesis.nBits    = 0x1ffffff0;
+        genesis.nBits    = 0x1e7fffff;
         genesis.nNonce   = 8;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0xd8bbb671f793975bba784b46fd5de8f007aceba352c062787c3595ab89cda624"));
+        assert(hashGenesisBlock == uint256("0x9f1a0404a4cb7f5f10d19fcdcc2689176e004787c4eb0449175b2035c12e15e4"));
         assert(genesis.hashMerkleRoot == uint256("0x820d22693889692493d1c58687298853b2d1dcaa93e56c540986c1620da09b9c"));
 		
 		vSeeds.push_back(CDNSSeedData("king.odj.ru", "king.odj.ru"));
@@ -214,7 +215,8 @@ public:
         pchMessageStart[3] = 0xdb;
         vAlertPubKey = ParseHex("043014c67b78f95c8964ba4f10bc83ce6dbee8d6afeb0570552e2f7562f83a5ae6cc937900545ab5c30a84565315d55107d5269e816c50e4080ca89dc2cc64e9c2");
         nDefaultPort = 9333;
-        bnProofOfWorkLimit = ~uint256(0) >> 2; //empty
+        //bnProofOfWorkLimit = ~uint256(0) >> 20;
+		bnProofOfWorkLimit = uint256(00007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
         nSubsidyHalvingInterval = 210000; //empty
         nEnforceBlockUpgradeMajority = 750; //51
         nRejectBlockOutdatedMajority = 950; //75
@@ -231,7 +233,7 @@ public:
         genesis.nTime = 1673049600;
         genesis.nNonce = 8;
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0xd8bbb671f793975bba784b46fd5de8f007aceba352c062787c3595ab89cda624"));
+        assert(hashGenesisBlock == uint256("0x9f1a0404a4cb7f5f10d19fcdcc2689176e004787c4eb0449175b2035c12e15e4"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
